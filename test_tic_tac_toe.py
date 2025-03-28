@@ -2,6 +2,7 @@ from mock_boards import *
 from common import *
 
 
+
 # на настоящей работе такая функция будет предоставленна тестинг фреймворком но для иллюстрации поинта
 # сделаем простенькую версию сами
 def assert_equal(a, b, explanation):
@@ -45,29 +46,46 @@ def test_check_draw():
     # TODO когда допишешь check_draw() можно раскомментить и должно работать
 
     # проверяем что победы это не ничья
-    # test1 = check_draw(board_with_horizonal_x_win, False)
-    # assert_equal(test1, False, "checking that horizontal win is not a draw")
-    #
-    # test2 = check_draw(board_with_vertical_x_win, False)
-    # assert_equal(test2, False, "checking that vertical win is not a draw")
-    #
-    # test3 = check_draw(check_diagonal_win(), False)
-    # assert_equal(test3, False, "checking that diagonal win is not a draw")
-    #
-    # # проверяем что посреди игры это еще не ничья
-    # test4 = check_draw(random_unfinished_game_1, False)
-    # assert_equal(test4, False, "checking that if there are moves to be made that might result in a victory is not a draw")
-    #
-    # test5 = check_draw(random_unfinished_game_2, False)
-    # assert_equal(test5, False, "checking that if there are moves to be made that might result in a victory is not a draw 2: тестовая братва")
-    #
-    # # проверяем что ничья это ничья
-    # test6 = check_draw(board_with_draw(), True)
-    # assert_equal(test6, False, "checking that the filled board that doesn't have a win is indeed a draw")
-    #
-    # # проверяем что если остался всего один ход и он не приведет к победе то это тоже ничья (опционально)
-    # test7 = check_draw(board_with_unachievable_win(), True)
-    # assert_equal(test7, False, "checking that there is only one move left to make that will not result in a victory IS a draw")
+    test1 = check_draw(board_with_horizonal_x_win) #False
+    if test1 != check_draw(board):
+        assert_equal(test1, False, "checking that horizontal win is not a draw")
+
+    test2 = check_draw(board_with_vertical_x_win) #False
+    if test2 != check_draw(board):
+        assert_equal(test2, False, "checking that vertical win is not a draw")
+
+    test3 = check_draw(board_with_diagonal_x_win) #False
+    if test3 != check_draw(board):
+        assert_equal(test3, False, "checking that diagonal win is not a draw")
+
+    # проверяем что посреди игры это еще не ничья
+    test4 = check_draw(random_unfinished_game_1) #False
+    if test4 != check_draw(board):
+        assert_equal(test4, False, "checking that if there are moves to be made that might result in a victory is not a draw")
+
+    test5 = check_draw(random_unfinished_game_2) #False
+    if test5 != check_draw(board):
+        assert_equal(test5, False, "checking that if there are moves to be made that might result in a victory is not a draw 2: тестовая братва")
+
+    # проверяем что ничья это ничья
+    test6 = check_draw(board_with_draw) #True
+    if test6 == check_draw(board):
+        assert_equal(test6, False, "checking that the filled board that doesn't have a win is indeed a draw")
+
+    # проверяем что если остался всего один ход и он не приведет к победе то это тоже ничья (опционально)
+    #test7 = check_draw(board_with_unachievable_win()) #True
+    #assert_equal(test7, False, "checking that there is only one move left to make that will not result in a victory IS a draw")
 
     return True
+
+
+def test_main():
+        test = int(input(f"Игрок, введите номер клетки (1-9): "))
+        if test == str():
+            assert_equal(test, False, "checking that if input doesn't integer")
+        else:
+            print("Yes!")
+
+
+        return True
 

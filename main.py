@@ -1,5 +1,6 @@
-from common import print_board, board, check_win
-from test_tic_tac_toe import test_check_win
+from common import print_board, board, check_win, check_draw
+from test_tic_tac_toe import test_check_win, test_main, test_check_draw
+
 
 
 def main():
@@ -31,10 +32,11 @@ def main():
             print(f"Игрок {winner} победил!")
             break
         # Проверка на ничью - TODO заменить на check_draw()
-        if all(cell in ["X", "O"] for row in board for cell in row):
-            print_board(board)
-            print("Ничья")
-            break
+        if check_draw(board):
+         print_board(board)
+         print("Ничья!")
+         break
+
 
         # flipping the player at the end of a loop iteration
         if player == "X":
@@ -42,11 +44,13 @@ def main():
         else:
             player = "X"
 
+
 if __name__ == '__main__':
     # прогоняем тесты прежде чем начинать играть
 
     test_check_win()
-    # test_check_draw()  <- TODO раскомменть как напишешь check_draw()
+    test_check_draw()  #<- TODO раскомменть как напишешь check_draw()
+    test_main()
 
     print('\n' * 5)
 

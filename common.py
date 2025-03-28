@@ -27,9 +27,13 @@ def check_diagonal_win(board):
         return board[0][2]
 
 def check_draw(board):
+    for row in board:
+        for cell in row:
+            if cell not in ["X", "O"]:
+                return False
+    return True
     # TODO напиши сам - должно возвращать True если доска заполненна и никто не выиграл
     #  или (за дополнительный респект) если остался всего один ход который не приведет к победе
-    return False
 
 # Проверка на победу
 def check_win(board, player):
